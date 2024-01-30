@@ -32,6 +32,8 @@ import com.example.codem.ui.theme.fondo
 
 @Composable
 //@Preview(showBackground = true)
+//navController: NavHostController
+//navController, navController: NavHostController
 fun MyPantalla4(navController: NavHostController) {
     CreateAccount(navController)
 }
@@ -51,7 +53,7 @@ fun CreateAccount(navController: NavHostController) {
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(90.dp))
+        Spacer(modifier = Modifier.height(70.dp))
 
         // Logo
         Image(

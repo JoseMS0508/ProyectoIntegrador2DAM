@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
                 composable("pantalla2") { MyPantalla2(navigationController) }
                 composable("pantalla3") { MyPantalla3(navigationController) }
                 composable("pantalla4") { MyPantalla4(navigationController) }
-                // Aquí puedes agregar más destinos según sea necesario.
+                composable("pantalla5") { MyPantalla5(navigationController) }
             }
 
         }
