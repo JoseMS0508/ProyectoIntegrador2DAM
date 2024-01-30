@@ -143,7 +143,7 @@ fun CreateAccount(navController: NavHostController) {
         Spacer(modifier = Modifier.height(60.dp))
 
         Button(
-            onClick = { /* TODO: Add action for login */ },
+            onClick = { navController.navigate("pantalla5") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 120.dp)
