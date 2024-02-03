@@ -53,7 +53,7 @@ fun CreateAccount(navController: NavHostController) {
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(70.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         // Logo
         Image(
@@ -64,7 +64,7 @@ fun CreateAccount(navController: NavHostController) {
                 .height(80.dp)
         )
 
-        Spacer(modifier = Modifier.height(60.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         // Nombre TextField
         OutlinedTextField(
@@ -140,7 +140,7 @@ fun CreateAccount(navController: NavHostController) {
                 .padding(horizontal = 55.dp)
         )
 
-        Spacer(modifier = Modifier.height(60.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         Button(
             onClick = { navController.navigate("pantalla5") },
