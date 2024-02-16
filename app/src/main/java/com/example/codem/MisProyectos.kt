@@ -7,7 +7,6 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -36,21 +35,21 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.codem.ui.theme.fondo
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
-@Preview(showBackground = true)
-fun MyPantalla9() {
-    MyProjects()
+//@Preview(showBackground = true)
+fun MyPantalla9(navController: NavHostController) {
+    MyProjects(navController)
 }
 
 
 @Composable
-fun MyProjects() {
+fun MyProjects(navController: NavHostController) {
 
     Column(
         modifier = Modifier
@@ -90,35 +89,35 @@ fun MyProjects() {
                     bitmap = AppIcons.iconoAjustes,
                     contentDescription = "Subir proyecto",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla8") }
                         .size(30.dp)
                 )
                 Image(
                     bitmap = AppIcons.iconoAjustes,
                     contentDescription = "Subir proyecto",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla9") }
                         .size(30.dp)
                 )
                 Image(
                     bitmap = AppIcons.iconoAjustes,
                     contentDescription = "Subir proyecto",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla6") }
                         .size(30.dp)
                 )
                 Image(
                     bitmap = AppIcons.iconoAñadir,
                     contentDescription = "Subir proyecto",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla8")}
                         .size(30.dp)
                 )
                 Image(
                     bitmap = AppIcons.iconoAjustes,
                     contentDescription = "Ajustes",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla10") }
                         .size(30.dp)
                 )
             }
@@ -134,8 +133,8 @@ fun CardList2(modifier: Modifier = Modifier) {
     val cardsData = listOf(
         Pair("Videojuego E-learning", listOf("Kotlin", "Web", "Ciberseguridad")),
         Pair("Controles de acceso", listOf("Block-chain", "IoT", "Ciberseguridad")),
-        Pair("Red social cocineros", listOf("DevOps", "Web", "Ciberseguridad")),
-        Pair("Corto de animación", listOf("3D", "Maya", "Rendering")),
+        Pair("Red social cocineros", listOf("DevOps", "Web", "Ciberseguridad"))
+       // Pair("Corto de animación", listOf("3D", "Maya", "Rendering")),
 
     )
 

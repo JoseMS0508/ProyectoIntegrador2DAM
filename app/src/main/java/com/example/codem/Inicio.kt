@@ -35,21 +35,21 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavHostController
 import com.example.codem.ui.theme.fondo
 import com.google.accompanist.flowlayout.FlowRow
 
 @Composable
-@Preview(showBackground = true)
-fun MyPantalla8() {
-    HombreScreen()
+//@Preview(showBackground = true)
+fun MyPantalla8(navController: NavHostController) {
+    HombreScreen(navController)
 }
 
 
 @Composable
-fun HombreScreen() {
+fun HombreScreen(navController: NavHostController) {
     var searchQuery by remember { mutableStateOf("") }
     val backgroundColor = Color(0xFF1976D2)
 
@@ -106,35 +106,35 @@ fun HombreScreen() {
                     bitmap = AppIcons.iconoAjustes,
                     contentDescription = "Subir proyecto",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla8") }
                         .size(30.dp)
                 )
                 Image(
                     bitmap = AppIcons.iconoAjustes,
                     contentDescription = "Subir proyecto",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla9") }
                         .size(30.dp)
                 )
                 Image(
                     bitmap = AppIcons.iconoAjustes,
                     contentDescription = "Subir proyecto",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla6") }
                         .size(30.dp)
                 )
                 Image(
                     bitmap = AppIcons.iconoAñadir,
                     contentDescription = "Subir proyecto",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla8")}
                         .size(30.dp)
                 )
                 Image(
                     bitmap = AppIcons.iconoAjustes,
                     contentDescription = "Ajustes",
                     modifier = Modifier
-                        .clickable { /* Handle click */ }
+                        .clickable { navController.navigate("pantalla10") }
                         .size(30.dp)
                 )
             }
@@ -151,8 +151,10 @@ fun CardList(modifier: Modifier = Modifier) {
         Pair("Videojuego E-learning", listOf("Kotlin", "Web", "Ciberseguridad")),
         Pair("Controles de acceso", listOf("Block-chain", "IoT", "Ciberseguridad")),
         Pair("Red social cocineros", listOf("DevOps", "Web", "Ciberseguridad")),
-        Pair("Corto de animación", listOf("3D", "Maya", "Rendering")),
-       // Pair("App inteligencia artificial", listOf("Computer vision", "LLM", "Python"))
+       // Pair("Corto de animación", listOf("3D", "Maya", "Rendering")),
+      //  Pair("App inteligencia artificial", listOf("Computer vision", "LLM", "Python")) ,
+          //      Pair("App inteligencia artificial", listOf("Computer vision", "LLM", "Python")),
+    //Pair("App inteligencia artificial", listOf("Computer vision", "LLM", "Python"))
     )
 
     Box(

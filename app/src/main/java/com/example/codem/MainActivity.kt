@@ -53,6 +53,10 @@ class MainActivity : ComponentActivity() {
                 composable("pantalla3") { MyPantalla3(navigationController) }
                 composable("pantalla4") { MyPantalla4(navigationController) }
                 composable("pantalla5") { MyPantalla5(navigationController) }
+                composable("pantalla8") { MyPantalla8(navigationController) }
+                composable("pantalla9") { MyPantalla9(navigationController) }
+                composable("pantalla10") { MyPantalla10(navigationController) }
+                composable("pantalla6") { MyPantalla6(navigationController) }
             }
 
         }
@@ -127,7 +131,7 @@ fun LoginScreen(navController: NavHostController) {
         Spacer(modifier = Modifier.height(100.dp))
 
         Button(
-            onClick = { /* TODO: Add action for login */ },
+            onClick = { navController.navigate("pantalla8") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 120.dp)
