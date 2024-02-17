@@ -21,6 +21,13 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.Icon
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -85,40 +92,45 @@ fun MyProjects(navController: NavHostController) {
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
-                Image(
-                    bitmap = AppIcons.iconoAjustes,
-                    contentDescription = "Subir proyecto",
+                Icon(
+                    imageVector = Icons.Outlined.Home,
+                    contentDescription = "Home",
                     modifier = Modifier
                         .clickable { navController.navigate("pantalla8") }
-                        .size(30.dp)
+                        .size(40.dp),
+                    tint = Color.White
                 )
-                Image(
-                    bitmap = AppIcons.iconoAjustes,
-                    contentDescription = "Subir proyecto",
+                Icon(
+                    imageVector = Icons.Outlined.FavoriteBorder,
+                    contentDescription = "Add",
                     modifier = Modifier
                         .clickable { navController.navigate("pantalla9") }
-                        .size(30.dp)
+                        .size(35.dp),
+                    tint = Color.White
                 )
-                Image(
-                    bitmap = AppIcons.iconoAjustes,
-                    contentDescription = "Subir proyecto",
+                Icon(
+                    imageVector = Icons.Outlined.Add,
+                    contentDescription = "Add",
                     modifier = Modifier
                         .clickable { navController.navigate("pantalla6") }
-                        .size(30.dp)
+                        .size(35.dp),
+                    tint = Color.White
                 )
-                Image(
-                    bitmap = AppIcons.iconoAñadir,
-                    contentDescription = "Subir proyecto",
+                Icon(
+                    imageVector = Icons.Outlined.Person,
+                    contentDescription = "Profile",
                     modifier = Modifier
-                        .clickable { navController.navigate("pantalla8")}
-                        .size(30.dp)
+                        .clickable { navController.navigate("pantalla11") }
+                        .size(35.dp),
+                    tint = Color.White
                 )
-                Image(
-                    bitmap = AppIcons.iconoAjustes,
-                    contentDescription = "Ajustes",
+                Icon(
+                    Icons.Outlined.Settings,
+                    contentDescription = "Settings",
                     modifier = Modifier
                         .clickable { navController.navigate("pantalla10") }
-                        .size(30.dp)
+                        .size(35.dp),
+                    tint = Color.White
                 )
             }
 
@@ -163,9 +175,9 @@ fun CustomCard2(title: String, tags: List<String>) {
     ) {
         Text(
             text = title,
-            fontSize = 24.sp,
+            fontSize = 20.sp,
             color = Color.Black,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Normal
         )
         Spacer(modifier = Modifier.height(20.dp))
 
@@ -198,7 +210,7 @@ fun ChipComponent2(
             text = tag,
             color = textColor,
             modifier = Modifier.padding(5.dp),
-            style = TextStyle(fontWeight = FontWeight.Bold)
+            style = TextStyle(fontWeight = FontWeight.Normal)
         )
     }
 }

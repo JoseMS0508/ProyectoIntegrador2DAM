@@ -8,50 +8,53 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material.DropdownMenuItem
-import androidx.compose.material.Switch
-import androidx.compose.material.SwitchDefaults
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.AccountCircle
+import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material.icons.outlined.Home
 import androidx.compose.material.icons.outlined.Person
 import androidx.compose.material.icons.outlined.Settings
-import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.Icon
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Color.Companion.Blue
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
+import coil.compose.rememberImagePainter
 import com.example.codem.ui.theme.fondo
+import coil.compose.rememberAsyncImagePainter
+import com.google.accompanist.flowlayout.FlowRow
 
+
+//navController: NavHostController
+//navController
 @Composable
 //@Preview(showBackground = true)
-fun MyPantalla10(navController: NavHostController) {
-    AjustesScreen(navController)
+fun MyPantalla11(navController: NavHostController) {
+    MyProfile(navController)
 }
 
-
 @Composable
-fun AjustesScreen(navController: NavHostController) {
+fun MyProfile(navController: NavHostController) {
 
     Column(
         modifier = Modifier
@@ -68,39 +71,12 @@ fun AjustesScreen(navController: NavHostController) {
                 .padding(horizontal = 15.dp)
                 .height(80.dp)
         )
-        Spacer(modifier = Modifier.height(50.dp))
-
-        androidx.compose.material3.Text(
-            "Ajustes", style = MaterialTheme.typography.titleLarge,
-            fontWeight = FontWeight.Bold,
-            color = Color(0xFF2699FB)
-        )
-
-        Spacer(modifier = Modifier.height(50.dp))
-
-        SettingsScreen()
-
-        Spacer(modifier = Modifier.height(50.dp))
-
-        Text(
-            text = "Cerrar sesión",
-            color = Color(0xFF2699FB),
-            modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = 60.dp)
-                .clickable { navController.navigate("pantalla1") },
-            textAlign = TextAlign.Center
-        )
-
         Spacer(modifier = Modifier.height(20.dp))
 
-        Text(
-            text = "Eliminar cuenta",
-            color = Color(0xFF2699FB),
-            modifier = Modifier.fillMaxWidth()
-                .padding(horizontal = 60.dp),
-            textAlign = TextAlign.Center
-        )
-
+        UserProfileImage("")
+        datosUsuario()
+        Spacer(modifier = Modifier.height(20.dp))
+        skillsUsuario()
         Spacer(modifier = Modifier.weight(1f))
 
 
@@ -109,9 +85,10 @@ fun AjustesScreen(navController: NavHostController) {
                 .background(Color(0xFF1976D2))
                 .height(80.dp)
                 .fillMaxWidth(),
+            //.padding(horizontal = 20.dp),
             contentAlignment = Alignment.Center
         ) {
-            Row (
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 horizontalArrangement = Arrangement.SpaceAround
             ) {
@@ -135,7 +112,7 @@ fun AjustesScreen(navController: NavHostController) {
                     imageVector = Icons.Outlined.Add,
                     contentDescription = "Add",
                     modifier = Modifier
-                        .clickable { navController.navigate("pantalla6") }
+                       .clickable { navController.navigate("pantalla6") }
                         .size(35.dp),
                     tint = Color.White
                 )
@@ -156,79 +133,112 @@ fun AjustesScreen(navController: NavHostController) {
                     tint = Color.White
                 )
             }
-
         }
-
-
     }
+}
+
+
+@Composable
+fun UserProfileImage(uri: String?) {
+    Box(
+        modifier = Modifier
+            .size(width = 330.dp, height = 150.dp)
+            .background(Color(0xFFBCE0FD))
+    ) {
+        Icon(
+            imageVector = Icons.Outlined.Edit,
+            contentDescription = "Icono de perfil",
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(20.dp),
+            tint = Color.DarkGray
+        )
+    }
+
+    Spacer(modifier = Modifier.height(35.dp))
+    Text(
+        text = "Juan Ruiz",
+        fontSize = 24.sp,
+        color = Color.Black,
+        fontWeight = FontWeight.Bold
+    )
+
+    Spacer(modifier = Modifier.height(5.dp))
+
+    Text(
+        text = "DAM",
+        fontSize = 14.sp,
+        color = Color.Black,
+        fontWeight = FontWeight.Normal
+    )
+
+    Spacer(modifier = Modifier.height(35.dp))
+
 }
 
 @Composable
-fun SettingsScreen() {
-    // Estado para el interruptor de notificaciones
-    var notificationsEnabled by remember { mutableStateOf(true) }
-
-    // Estado para el desplegable de idiomas
-    var expanded by remember { mutableStateOf(false) }
-    var selectedLanguage by remember { mutableStateOf("Español") }
-    val languages = listOf("Español", "English", "Français")
-
-    Column(
+fun datosUsuario() {
+    Box(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(30.dp)
+            .size(width = 300.dp, height = 120.dp)
+            .background(Color.White)
     ) {
-        // Interruptor para las notificaciones
-        Row(
+        Column (
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .background(Color.White, shape = MaterialTheme.shapes.small)
-                .padding(horizontal = 25.dp, vertical = 12.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxSize()
+                .padding(horizontal = 25.dp),
+            verticalArrangement = Arrangement.SpaceEvenly, // Esto distribuirá los elementos uniformemente
+            horizontalAlignment = Alignment.Start
         ) {
-            Text("Notificaciones", modifier = Modifier.weight(1f), Color(0xFF2699FB), fontSize = 16.sp)
-            Switch(
-                checked = notificationsEnabled,
-                onCheckedChange = { notificationsEnabled = it },
-                colors = SwitchDefaults.colors(
-                    checkedThumbColor = Color(0xFF2699FB),
-                    uncheckedThumbColor = Color.Gray,
-                    checkedTrackColor = Color(0xFF2699FB).copy(alpha = 0.5f),
-                    uncheckedTrackColor = Color.Gray.copy(alpha = 0.5f)
-                )
+            Text(
+                text = "Fecha nacimiento:14/08/1999",
+                fontSize = 12.sp,
+                color = Color.Black,
+                fontWeight = FontWeight.Normal
+            )
+            Text(
+                text = "Correo electrónico: J.ruiz@live.u-tad.com",
+                fontSize = 12.sp,
+                color = Color.Black,
+                fontWeight = FontWeight.Normal
+            )
+            Text(
+                text = "Estudios: Desarrollo aplicaciones web",
+                fontSize = 12.sp,
+                color = Color.Black,
+                fontWeight = FontWeight.Normal
             )
         }
+}}
 
-        Spacer(Modifier.height(8.dp))
-
-        // Desplegable para seleccionar el idioma
-        Row(
+@Composable
+fun skillsUsuario() {
+    val cardsData = listOf("Block-chain", "IoT", "Ciberseguridad")
+    Box(
+        modifier = Modifier
+            .size(width = 300.dp, height = 115.dp)
+            .background(Color.White)
+    ) {
+        Column (
             modifier = Modifier
-                .fillMaxWidth()
-                .padding(8.dp)
-                .background(Color.White, shape = MaterialTheme.shapes.small)
-                .clickable(onClick = { expanded = true })
-                .padding(horizontal = 25.dp, vertical = 25.dp),
-            verticalAlignment = Alignment.CenterVertically
+                .fillMaxSize()
+                .padding(horizontal = 25.dp),
+            verticalArrangement = Arrangement.SpaceEvenly,
+            horizontalAlignment = Alignment.Start
         ) {
-            Text(selectedLanguage, modifier = Modifier.weight(1f), Color(0xFF2699FB), fontSize = 16.sp)
-            Icon(Icons.Default.ArrowDropDown, contentDescription = "Desplegar", tint = Color(0xFF2699FB))
+            Text(
+                text = "SKILLS",
+                fontSize = 14.sp,
+                color = Color.Black,
+                fontWeight = FontWeight.Bold
+            )
 
-            // Menú desplegable
-            DropdownMenu(
-                expanded = expanded,
-                onDismissRequest = { expanded = false },
+            FlowRow(
+                mainAxisSpacing = 8.dp,
+                crossAxisSpacing = 8.dp
             ) {
-                languages.forEach { language ->
-                    DropdownMenuItem(onClick = {
-                        selectedLanguage = language
-                        expanded = false
-                    }) {
-                        Text(language)
-                    }
+                cardsData.forEach { tag ->
+                    ChipComponent2(tag = tag)
                 }
             }
-        }
-    }
-}
+        }}}

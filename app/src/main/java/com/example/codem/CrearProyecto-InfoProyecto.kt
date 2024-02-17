@@ -3,16 +3,28 @@ package com.example.codem
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Add
+import androidx.compose.material.icons.outlined.FavoriteBorder
+import androidx.compose.material.icons.outlined.Home
+import androidx.compose.material.icons.outlined.Person
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -59,7 +71,7 @@ fun CreateProjectInfo(navController: NavHostController) {
             .verticalScroll(scrollState),
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Spacer(modifier = Modifier.height(50.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         // Logo
         Image(
@@ -70,13 +82,15 @@ fun CreateProjectInfo(navController: NavHostController) {
                 .height(80.dp)
         )
 
-        Spacer(modifier = Modifier.height(80.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
-        Text("Información del proyecto", style = MaterialTheme.typography.titleLarge,
+        Text(
+            "Información del proyecto", style = MaterialTheme.typography.titleLarge,
             fontWeight = FontWeight.Bold,
-            color = Color(0xFF0066CC))
+            color = Color(0xFF0066CC)
+        )
 
-        Spacer(modifier = Modifier.height(80.dp))
+        Spacer(modifier = Modifier.height(50.dp))
 
         // Nombre TextField
         OutlinedTextField(
@@ -112,10 +126,10 @@ fun CreateProjectInfo(navController: NavHostController) {
                 .padding(horizontal = 55.dp)
         )
 
-        Spacer(modifier = Modifier.height(120.dp))
+        Spacer(modifier = Modifier.height(80.dp))
 
         Button(
-            onClick = { navController.navigate("pantalla6") },
+            onClick = { navController.navigate("pantalla7") },
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(horizontal = 120.dp)
@@ -129,7 +143,60 @@ fun CreateProjectInfo(navController: NavHostController) {
             )
         }
 
-        Spacer(modifier = Modifier.height(40.dp))
+        Spacer(modifier = Modifier.weight(1f))
+        Box(
+            modifier = Modifier
+                .background(Color(0xFF1976D2))
+                .height(80.dp)
+                .fillMaxWidth(),
+            //.padding(horizontal = 20.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.SpaceAround
+            ) {
+                Icon(
+                    imageVector = Icons.Outlined.Home,
+                    contentDescription = "Home",
+                    modifier = Modifier
+                        .clickable { navController.navigate("pantalla8") }
+                        .size(40.dp),
+                    tint = Color.White
+                )
+                Icon(
+                    imageVector = Icons.Outlined.FavoriteBorder,
+                    contentDescription = "Add",
+                    modifier = Modifier
+                        .clickable { navController.navigate("pantalla9") }
+                        .size(35.dp),
+                    tint = Color.White
+                )
+                Icon(
+                    imageVector = Icons.Outlined.Add,
+                    contentDescription = "Add",
+                    modifier = Modifier
+                        .clickable { navController.navigate("pantalla6") }
+                        .size(35.dp),
+                    tint = Color.White
+                )
+                Icon(
+                    imageVector = Icons.Outlined.Person,
+                    contentDescription = "Profile",
+                    modifier = Modifier
+                        .clickable { navController.navigate("pantalla11") }
+                        .size(35.dp),
+                    tint = Color.White
+                )
+                Icon(
+                    Icons.Outlined.Settings,
+                    contentDescription = "Settings",
+                    modifier = Modifier
+                        .clickable { navController.navigate("pantalla10") }
+                        .size(35.dp),
+                    tint = Color.White
+                )
+            }
 
-    }
-}
+        }
+    }}

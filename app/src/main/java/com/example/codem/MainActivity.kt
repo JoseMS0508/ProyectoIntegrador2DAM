@@ -53,12 +53,14 @@ class MainActivity : ComponentActivity() {
                 composable("pantalla3") { MyPantalla3(navigationController) }
                 composable("pantalla4") { MyPantalla4(navigationController) }
                 composable("pantalla5") { MyPantalla5(navigationController) }
+                composable("pantalla6") { MyPantalla6(navigationController) }
+                composable("pantalla7") { MyPantalla7(navigationController) }
                 composable("pantalla8") { MyPantalla8(navigationController) }
                 composable("pantalla9") { MyPantalla9(navigationController) }
                 composable("pantalla10") { MyPantalla10(navigationController) }
-                composable("pantalla6") { MyPantalla6(navigationController) }
+                composable("pantalla11") { MyPantalla11(navigationController) }
+                composable("pantalla12") { MyPantalla12(navigationController) }
             }
-
         }
     }
 }
